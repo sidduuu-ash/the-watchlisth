@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>THE WATCHLIST — Film & Series Archive</title>
+<style>
+:root{--bg:#090a0d;--panel:#12151b;--panel2:#191e27;--text:#f2f3f5;--muted:#9aa3b2;--line:#292f3a;--accent:#c7a36a;--red:#b84b4b}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:radial-gradient(ellipse at 80% -10%,#29202a 0,transparent 35%),var(--bg);color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,sans-serif}
+header{position:sticky;top:0;z-index:5;background:#090a0de8;backdrop-filter:blur(16px);border-bottom:1px solid var(--line)}
+.nav{max-width:1180px;margin:auto;padding:17px 24px;display:flex;align-items:center;justify-content:space-between;gap:18px}.brand{font-weight:900;letter-spacing:.17em;font-size:14px}.brand span{color:var(--accent)}nav{display:flex;gap:22px}nav a{color:var(--muted);text-decoration:none;font-size:13px}nav a:hover{color:var(--text)}
+main{max-width:1180px;margin:auto;padding:0 24px}.hero{padding:76px 0 54px;display:grid;grid-template-columns:1.2fr .8fr;gap:34px;align-items:center}.eyebrow{color:var(--accent);letter-spacing:.22em;font-size:11px;font-weight:800}.hero h1{font-size:clamp(42px,7vw,78px);line-height:.98;letter-spacing:-.055em;margin:17px 0}.hero h1 em{font-style:normal;color:var(--accent)}.hero p{color:var(--muted);line-height:1.7;max-width:570px}.hero-art{min-height:300px;border:1px solid #37303a;border-radius:18px;position:relative;overflow:hidden;background:linear-gradient(135deg,#22202a,#10151c 55%,#3b2926);display:flex;align-items:end;padding:25px}.hero-art:before{content:"";position:absolute;width:260px;height:260px;border-radius:50%;right:8%;top:5%;background:radial-gradient(circle,#c7a36a55,transparent 68%);filter:blur(5px)}.hero-art:after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,#08090de8,transparent 70%),repeating-linear-gradient(115deg,transparent 0 34px,#ffffff08 35px 36px)}.art-copy{position:relative;z-index:1}.art-copy small{color:var(--accent);letter-spacing:.2em}.art-copy strong{display:block;font-size:28px;letter-spacing:-.04em;margin-top:7px}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:44px}.stat{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:17px}.stat b{font-size:22px}.stat span{display:block;color:var(--muted);font-size:11px;letter-spacing:.1em;margin-top:5px;text-transform:uppercase}
+.section-head{display:flex;justify-content:space-between;align-items:end;gap:15px;margin:40px 0 18px}.section-head h2{font-size:25px;margin:0;letter-spacing:-.04em}.section-head p{color:var(--muted);font-size:13px;margin:6px 0 0}
+.controls{display:flex;flex-wrap:wrap;gap:10px;margin:20px 0 24px}.search{flex:1;min-width:210px;background:var(--panel);border:1px solid var(--line);color:var(--text);border-radius:9px;padding:12px 14px;font:inherit;outline:none}.search:focus{border-color:var(--accent)}select,.filter{background:var(--panel);border:1px solid var(--line);color:var(--text);border-radius:9px;padding:11px 13px;font:inherit;font-size:13px}.filter{cursor:pointer;color:var(--muted)}.filter.active{background:#332b20;border-color:var(--accent);color:var(--accent)}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}.card{background:linear-gradient(145deg,var(--panel2),var(--panel));border:1px solid var(--line);border-radius:14px;overflow:hidden;transition:.2s}.card:hover{transform:translateY(-3px);border-color:#64543d}.poster{height:150px;padding:16px;display:flex;align-items:end;position:relative;overflow:hidden;background:linear-gradient(135deg,#242c38,#12151b)}.poster:before{content:"";position:absolute;width:180px;height:180px;border:1px solid #ffffff18;border-radius:50%;right:-30px;top:-70px;box-shadow:0 0 0 20px #ffffff08,0 0 0 40px #ffffff05}.poster:after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,#08090de8,transparent 80%)}.poster .poster-title{position:relative;z-index:1;font-size:25px;font-weight:900;letter-spacing:-.06em;text-shadow:0 2px 15px #000}.poster .rank{position:absolute;right:13px;top:13px;z-index:2;background:#08090dbb;border:1px solid #ffffff25;border-radius:7px;padding:6px 9px;font-size:12px}.card-body{padding:16px}.meta{display:flex;justify-content:space-between;gap:8px;color:var(--muted);font-size:11px;text-transform:uppercase;letter-spacing:.08em}.card h3{margin:10px 0 7px;font-size:19px}.card p{margin:0;color:var(--muted);font-size:13px;line-height:1.55;min-height:60px}.tags{display:flex;flex-wrap:wrap;gap:6px;margin:13px 0}.tag{font-size:10px;color:#d6c3a2;background:#c7a36a18;border:1px solid #c7a36a33;padding:5px 7px;border-radius:20px}.details{border-top:1px solid var(--line);padding-top:12px;display:flex;justify-content:space-between;align-items:center}.score{color:var(--accent);font-size:13px;font-weight:800}.details button{border:0;background:none;color:var(--muted);cursor:pointer;font:inherit;font-size:12px}.details button:hover{color:var(--text)}
+.watch-order{margin:55px 0;background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:25px}.order-list{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}.order-item{display:flex;gap:12px;padding:13px;background:#0d1015;border:1px solid var(--line);border-radius:10px}.num{color:var(--accent);font-weight:900}.order-item b{display:block;font-size:13px}.order-item span{color:var(--muted);font-size:11px}
+.note{color:var(--muted);font-size:12px;line-height:1.6;margin-top:16px}.footer{border-top:1px solid var(--line);margin-top:65px;padding:25px 0 40px;color:var(--muted);font-size:12px;display:flex;justify-content:space-between;gap:15px}
+.modal{display:none;position:fixed;inset:0;background:#000b;z-index:10;align-items:center;justify-content:center;padding:20px}.modal.show{display:flex}.modal-box{max-width:560px;width:100%;background:#141820;border:1px solid #3b414b;border-radius:16px;padding:25px;max-height:85vh;overflow:auto}.modal-top{display:flex;justify-content:space-between;gap:15px}.modal-top button{background:none;border:0;color:var(--muted);font-size:22px;cursor:pointer}.modal-box p,.modal-box li{color:var(--muted);line-height:1.65;font-size:14px}.modal-box h2{margin:5px 0}.modal-box h3{font-size:13px;color:var(--accent);text-transform:uppercase;letter-spacing:.12em;margin-top:22px}
+@media(max-width:800px){.hero{grid-template-columns:1fr;padding-top:50px}.hero-art{min-height:210px}.grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.nav{padding:14px 17px}nav{gap:12px}nav a{font-size:11px}main{padding:0 17px}.grid{grid-template-columns:1fr}.stats{gap:7px}.stat{padding:12px}.stat b{font-size:18px}.order-list{grid-template-columns:1fr}.section-head{align-items:start;flex-direction:column}.hero h1{font-size:51px}}
+</style>
+</head>
+<body>
+<header><div class="nav"><div class="brand">THE <span>WATCHLIST</span></div><nav><a href="#rankings">Rankings</a><a href="#order">Watch order</a><a href="#about">About</a></nav></div></header>
+<main>
+<section class="hero">
+<div><div class="eyebrow">A CURATED SCREEN ARCHIVE</div><h1>GOOD STORIES.<br><em>GREAT MINDS.</em></h1><p>A ranked collection of crime dramas, psychological thrillers, mystery series and unforgettable characters. Find your next obsession — one story at a time.</p></div>
+<div class="hero-art"><div class="art-copy"><small>YOUR NEXT WATCH STARTS HERE</small><strong>Think deeper.<br>Watch smarter.</strong></div></div>
+</section>
+<div class="stats"><div class="stat"><b id="totalCount">12</b><span>Curated titles</span></div><div class="stat"><b>04</b><span>Core genres</span></div><div class="stat"><b>01</b><span>Personal watchlist</span></div></div>
+<section id="rankings">
+<div class="section-head"><div><h2>Ranked collection</h2><p>Editorial ranking for this starter list — not official scores.</p></div></div>
+<div class="controls">
+<input class="search" id="search" placeholder="Search titles, characters or genres..." aria-label="Search titles">
+<select id="type"><option value="all">All formats</option><option value="Series">Series</option><option value="Film">Films</option></select>
+<select id="genre"><option value="all">All genres</option><option>Crime</option><option>Mystery</option><option>Psychological</option><option>Thriller</option><option>Drama</option><option>Sci-Fi</option></select>
+<button class="filter active" data-sort="rank">Top ranked</button><button class="filter" data-sort="az">A–Z</button>
+</div>
+<div class="grid" id="catalog"></div>
+</section>
+<section class="watch-order" id="order">
+<div class="section-head"><div><h2>Where should you start?</h2><p>A suggested path through this kind of storytelling.</p></div></div>
+<div class="order-list">
+<div class="order-item"><div class="num">01</div><div><b>The Mentalist</b><span>Observation, deduction & long-form mystery</span></div></div>
+<div class="order-item"><div class="num">02</div><div><b>Sherlock</b><span>Fast-paced deductions & clever cases</span></div></div>
+<div class="order-item"><div class="num">03</div><div><b>Dexter</b><span>Character study & moral dilemmas</span></div></div>
+<div class="order-item"><div class="num">04</div><div><b>Breaking Bad</b><span>Character transformation & tension</span></div></div>
+<div class="order-item"><div class="num">05</div><div><b>Mindhunter</b><span>Psychological crime investigation</span></div></div>
+<div class="order-item"><div class="num">06</div><div><b>True Detective</b><span>Atmosphere, mystery & layered storytelling</span></div></div>
+</div>
+<p class="note">This is a recommendation order, not a chronological universe timeline. Some titles contain mature themes and are intended for older audiences; check the age rating and content guidance before watching.</p>
+</section>
+<section id="about" class="watch-order">
+<div class="section-head"><div><h2>How the rankings work</h2><p>A transparent starting point you can customize.</p></div></div>
+<p class="note">The ranking is a subjective starter editorial list based on storytelling, character writing, mystery, atmosphere and cultural impact. Scores are illustrative, not audience aggregates. Open any title for a spoiler-light premise, key characters and what makes it worth considering.</p>
+</section>
+<footer class="footer"><span>THE WATCHLIST · YOUR PERSONAL SCREEN ARCHIVE</span><span>Made for curious viewers.</span></footer>
+</main>
+<div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle"><div class="modal-box"><div class="modal-top"><div><div class="eyebrow" id="modalMeta"></div><h2 id="modalTitle"></h2></div><button id="close" aria-label="Close">×</button></div><p id="modalDesc"></p><h3>Key characters</h3><ul id="modalChars"></ul><h3>Why it stands out</h3><p id="modalWhy"></p><p class="note" id="modalRating"></p></div></div>
+<script>
+const titles=[
+{title:"The Mentalist",type:"Series",year:"2008–2015",genre:["Crime","Mystery","Drama"],score:"9.6",desc:"Patrick Jane, a sharp consultant with an extraordinary ability to read people, helps the California Bureau of Investigation solve complex cases while pursuing a deeply personal mystery.",chars:["Patrick Jane — observant, witty and unconventional","Teresa Lisbon — a principled team leader","Kimball Cho — calm, disciplined and direct","Wayne Rigsby & Grace Van Pelt — investigators with distinct strengths"],why:"Its pleasure comes from small details, psychological misdirection, character chemistry and a mystery that unfolds over multiple seasons.",rank:1},
+{title:"Breaking Bad",type:"Series",year:"2008–2013",genre:["Crime","Thriller","Drama"],score:"9.5",desc:"A chemistry teacher's life changes dramatically after a serious diagnosis, setting off a tense story about choices, ambition and consequences.",chars:["Walter White — a gifted chemistry teacher","Jesse Pinkman — his former student and partner","Hank Schrader — a determined investigator","Saul Goodman — a resourceful lawyer"],why:"A tightly constructed character drama with escalating stakes and carefully planted details.",rank:2},
+{title:"Dexter",type:"Series",year:"2006–2013",genre:["Crime","Psychological","Thriller"],score:"9.3",desc:"A forensic blood-spatter analyst working with Miami Metro leads a double life, creating a tense character study about identity, rules and morality.",chars:["Dexter Morgan — analytical and guarded","Debra Morgan — a determined detective","Harry Morgan — Dexter's adoptive father and mentor","Rita Bennett — an important part of Dexter's personal life"],why:"Its central perspective, inner conflict and moral questions make it a distinctive crime drama.",rank:3},
+{title:"Sherlock",type:"Series",year:"2010–2017",genre:["Mystery","Crime","Drama"],score:"9.2",desc:"A modern take on Sherlock Holmes, following a consulting detective and Dr. John Watson through intricate cases in London.",chars:["Sherlock Holmes — brilliant and eccentric","John Watson — friend, partner and narrator","Mycroft Holmes — Sherlock's influential brother","Mrs Hudson — the household's steady presence"],why:"Energetic deductions, memorable partnerships and puzzle-box mysteries.",rank:4},
+{title:"Mindhunter",type:"Series",year:"2017–2019",genre:["Crime","Psychological","Drama"],score:"9.1",desc:"Two FBI agents and a psychologist develop new approaches to understanding criminal behaviour through interviews and research.",chars:["Holden Ford — an ambitious FBI agent","Bill Tench — an experienced investigator","Wendy Carr — a thoughtful academic consultant"],why:"Measured pacing, strong dialogue and an unusually analytical approach to crime investigation.",rank:5},
+{title:"True Detective",type:"Series",year:"2014–present",genre:["Crime","Mystery","Psychological"],score:"9.0",desc:"An anthology crime drama in which each season follows a different investigation, cast and setting.",chars:["Rust Cohle — a philosophical, intense detective (Season 1)","Marty Hart — his complicated partner (Season 1)","Each season introduces a new central cast"],why:"Atmospheric storytelling, layered themes and distinctive detective partnerships.",rank:6},
+{title:"Prison Break",type:"Series",year:"2005–2017",genre:["Thriller","Crime","Drama"],score:"8.8",desc:"A man devises an elaborate plan to help his brother escape prison, leading to a high-stakes story of loyalty and strategy.",chars:["Michael Scofield — a meticulous planner","Lincoln Burrows — the brother at the centre of the plan","Sara Tancredi — a prison doctor","Fernando Sucre — Michael's friend"],why:"A propulsive premise, cliffhangers and intricate planning.",rank:7},
+{title:"Severance",type:"Series",year:"2022–present",genre:["Psychological","Mystery","Sci-Fi"],score:"8.8",desc:"Employees at a mysterious company undergo a procedure that separates their work memories from their personal lives.",chars:["Mark Scout — an employee navigating a strange workplace","Helly Riggs — a new employee questioning the system","Dylan George — a colleague with a sharp sense of humour","Harmony Cobel — a mysterious supervisor"],why:"An original high-concept mystery with striking production design and unsettling questions about identity.",rank:8},
+{title:"The Usual Suspects",type:"Film",year:"1995",genre:["Crime","Mystery","Thriller"],score:"8.7",desc:"A complex account of a criminal event emerges through the testimony of a survivor being questioned by investigators.",chars:["Roger 'Verbal' Kint — the key storyteller","Dean Keaton — a former corrupt officer","Dave Kujan — the interrogating agent"],why:"A carefully structured mystery built around perspective, storytelling and uncertainty.",rank:9},
+{title:"Gone Girl",type:"Film",year:"2014",genre:["Psychological","Mystery","Thriller"],score:"8.6",desc:"A disappearance turns a marriage into a media spectacle and a tense investigation into what people choose to show the world.",chars:["Nick Dunne — the husband under scrutiny","Amy Dunne — the missing wife","Detective Rhonda Boney — the investigator"],why:"A sharp study of media narratives, relationships and unreliable perspectives.",rank:10},
+{title:"Shutter Island",type:"Film",year:"2010",genre:["Psychological","Mystery","Thriller"],score:"8.5",desc:"Two U.S. marshals travel to a remote hospital for a criminal investigation that grows increasingly unsettling.",chars:["Teddy Daniels — a U.S. marshal","Chuck Aule — his investigative partner","Dr. Cawley — the hospital's lead physician"],why:"Its atmosphere, visual clues and questions about perception reward close attention.",rank:11},
+{title:"The Prestige",type:"Film",year:"2006",genre:["Mystery","Thriller","Drama"],score:"8.5",desc:"Two rival stage magicians become consumed by competition, secrecy and the pursuit of the perfect illusion.",chars:["Robert Angier — a driven performer","Alfred Borden — a fiercely private magician","Cutter — an engineer of stage illusions"],why:"A layered story about obsession, rivalry, sacrifice and the art of misdirection.",rank:12}
+];
+let sortMode="rank";
+const catalog=document.getElementById("catalog");
+function render(){
+ const q=document.getElementById("search").value.toLowerCase();
+ const type=document.getElementById("type").value;
+ const genre=document.getElementById("genre").value;
+ let list=titles.filter(t=>(type==="all"||t.type===type)&&(genre==="all"||t.genre.includes(genre))&&(t.title+" "+t.desc+" "+t.chars.join(" ")+" "+t.genre.join(" ")).toLowerCase().includes(q));
+ list.sort((a,b)=>sortMode==="rank"?a.rank-b.rank:a.title.localeCompare(b.title));
+ catalog.innerHTML=list.map(t=>`<article class="card"><div class="poster" style="background:linear-gradient(135deg,${palette(t.rank)},#11151c 78%)"><span class="rank">#${t.rank}</span><span class="poster-title">${t.title}</span></div><div class="card-body"><div class="meta"><span>${t.type} · ${t.year}</span><span>${t.genre[0]}</span></div><h3>${t.title}</h3><p>${t.desc}</p><div class="tags">${t.genre.map(g=>`<span class="tag">${g}</span>`).join("")}</div><div class="details"><span class="score">★ ${t.score} / 10</span><button onclick="openTitle(${t.rank})">Explore title ↗</button></div></div></article>`).join("");
+ if(!list.length)catalog.innerHTML='<p class="note">No titles found. Try another search or filter.</p>';
+ document.getElementById("totalCount").textContent=titles.length;
+}
+function palette(n){return ["#283849","#4a2927","#34302b","#293b43","#3b303f","#253a36","#3e2c27","#292e48","#463a2b","#402b39","#253a45","#44372c"][n-1]}
+function openTitle(rank){
+ const t=titles.find(x=>x.rank===rank);
+ document.getElementById("modalMeta").textContent=t.type+" · "+t.year+" · RANK #"+t.rank;
+ document.getElementById("modalTitle").textContent=t.title;
+ document.getElementById("modalDesc").textContent=t.desc;
+ document.getElementById("modalChars").innerHTML=t.chars.map(c=>`<li>${c}</li>`).join("");
+ document.getElementById("modalWhy").textContent=t.why;
+ document.getElementById("modalRating").textContent="Starter-list editorial score: "+t.score+"/10. This is a subjective placeholder, not an official rating.";
+ document.getElementById("modal").classList.add("show");
+}
+document.getElementById("close").onclick=()=>document.getElementById("modal").classList.remove("show");
+document.getElementById("modal").onclick=e=>{if(e.target.id==="modal")e.currentTarget.classList.remove("show")};
+document.getElementById("search").addEventListener("input",render);
+document.getElementById("type").addEventListener("change",render);
+document.getElementById("genre").addEventListener("change",render);
+document.querySelectorAll(".filter").forEach(b=>b.addEventListener("click",()=>{document.querySelectorAll(".filter").forEach(x=>x.classList.remove("active"));b.classList.add("active");sortMode=b.dataset.sort;render()}));
+render();
+</script>
+</body>
+</html>
